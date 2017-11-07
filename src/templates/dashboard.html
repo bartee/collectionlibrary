@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Dit is een dashboard{% endblock %}
+
+{% block content %}
+    <div class="grid-x grid-padding-x">
+        <div class="medium-6 large-4 cell">
+            {% include "organisms/collections/overview.html" %}
+        </div>
+        <div class="medium-6 large-8 cell">
+            {% include "organisms/entities/overview.html" %}
+        </div>
+    </div>
+{% endblock %}
