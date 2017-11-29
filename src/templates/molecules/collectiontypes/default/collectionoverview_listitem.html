@@ -1,0 +1,6 @@
+<div class="collection-item">
+    <div class="title">
+        <a href="{% url "collection_detail" pk=collection.id %}">{{ collection.name }}</a>
+        <span class="badge meta-title">type {{ collection.template }} - {{ collection.owner }}</span >
+    </div>
+</div>

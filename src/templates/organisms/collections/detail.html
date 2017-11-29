@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+    {% with template_name=object.template|stringformat:"s"|add:"/collectiondetail.html" %}
+        {% include "molecules/collectiontypes/"|add:template_name  %}
+    {% endwith %}
+{% endblock %}

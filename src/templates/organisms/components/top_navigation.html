@@ -1,0 +1,16 @@
+<nav>
+    <div class="nav-wrapper">
+        <div class="left">
+            {% if request.user.is_authenticated %}
+                Hello {{ request.user }}!
+            {% endif %}
+        </div>
+        <div class="right">
+            {% if request.user.is_authenticated %}
+                logout
+            {% else %}
+                login
+            {% endif %}
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,45 @@
+{
+  "name": "catalog-frontend",
+  "version": "0.0.1",
+  "description": "Catalog Library provides a list of things, with handy extra you always wanted.",
+  "dependencies": {
+    "materialize-autocomplete": "^1.0.7"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.0.0",
+    "gulp-bless": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-csscomb": "^3.0.8",
+    "gulp-eslint": "^4.0.0",
+    "gulp-file-include": "^1.2.0",
+    "gulp-git": "^2.4.2",
+    "gulp-gzip": "^1.4.0",
+    "gulp-jshint": "^2.0.4",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-prettify": "^0.5.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.6.1",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-swig": "^0.8.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^4.3.11",
+    "jshint": "^2.9.5",
+    "materialize-css": "^0.100.2",
+    "minimist": "^1.2.0",
+    "webpack": "^3.8.1",
+    "webpack-stream": "^4.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "contributors": [
+    {
+      "name": "Bart Stroeken",
+      "email": "bart.stroeken@gmail.com"
+    }
+  ],
+  "license": "ISC"
+}

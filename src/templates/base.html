@@ -1,0 +1,50 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static "css/vendor/font-awesome.css" %}" />
+{#        <link rel="stylesheet" href="{% static "css/foundation.css" %}" />#}
+        <link rel="stylesheet" href="{% static "css/app.css" %}" />
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static "css/site.css" %}" />
+        {% block scripts_header%}{% endblock %}
+    </head>
+    <body>
+
+        <div class="container">
+            {% include "organisms/components/top_navigation.html" %}
+            {% if feedback %}
+                <div class="bs-callout {% if feedback_info %} bs-callout-info {% else %}bs-callout-danger{% endif %}">
+                    <h4>{{ feedback }}</h4>
+                </div>
+            {% endif %}
+            {% block content %}
+                <p>Hello world! This is HTML5 Boilerplate.</p>
+            {% endblock %}
+        </div>
+        <script src="{% static "js/vendor/jquery.js" %}"></script>
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+        <script src="{% static "js/vendor/what-input.js" %}"></script>
+{#        <script src="{% static "js/vendor/foundation.js" %}"></script>#}
+
+{#        <script src="{% static "js/app.js" %}"></script>#}
+        <!-- Add your site or application content here -->
+        {% block scripts_bottom %}{% endblock %}
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+    </body>
+</html>

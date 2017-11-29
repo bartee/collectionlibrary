@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Dit is een dashboard{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col s6">
+            {% include "organisms/collections/overview.html" %}
+        </div>
+        <div class="col s6">
+            {% include "organisms/entities/overview.html" %}
+        </div>
+    </div>
+{% endblock %}

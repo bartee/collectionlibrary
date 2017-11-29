@@ -1,0 +1,10 @@
+<h2>All collections</h2>
+<div class="collection">
+{% for collection in collections %}
+        {% with template_name=collection.template|stringformat:"s"|add:"/collectionoverview_listitem.html" %}
+            {% include "molecules/collectiontypes/"|add:template_name  %}
+        {% endwith %}
+{% empty %}
+    Nothing here
+{% endfor %}
+</div>

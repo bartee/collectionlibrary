@@ -1,0 +1,54 @@
+.meta-content,
+span.badge.meta-title {
+    font-size: 0.75rem;
+    color: #cfcfcf;
+}
+
+span.badge.meta-title {
+    background: #8a8a8a;
+}
+
+.btn.btn-small {
+    font-size:0.75rem;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 0.5rem;
+}
+
+/**
+Row:
+- padding en margins op nul
+-
+ */
+
+
+.collection .collection-item.weekview,
+.collection.with-header .collection-item.weekview {
+    padding: 0px;
+    margin: 0.3rem 0;
+}
+.collection .collection-item.weekview .datefield,
+.collection-item.weekview .datefield {
+    padding: 10px;
+    text-align: center;
+    font-weight:bold;
+    font-variant: all-small-caps;
+}
+
+.collection-item.weekview .item-content,
+.collection-item.weekview .meta-content{
+    padding: 10px 30px;
+    width: 100%;
+}
+
+.collection-item.weekview .item-content{
+    margin-right: 0px;
+}
+.collection-item.weekview .meta-content{
+    color: #8a8a8a;
+    font-size: 0.75rem;
+    font-style: italic;
+    width: 30%;
+}
+.collection-item.weekview .item_content .references {
+}

@@ -1,0 +1,38 @@
+<div class="collection with-header">
+    <div class="collection-header">
+        <h5>{{ object.name }}</h5>
+    </div>
+    {% for key, entity in entity_list.items %}
+        <div class="collection-item weekview valign-wrapper hoverable row">
+            <div class="col s1 datefield">
+                {{ key }}
+            </div>
+            {% if entity %}
+                <div class="col s9">
+                    <div class="left item-content">
+                        {{ entity.item }}
+                    {% if entity.notes %}
+                        <div class="right meta-content">
+                            {{ entity.notes.value }}
+                        </div>
+                    {% endif %}
+                    </div>
+                </div>
+                <div class="col s2 references">
+                    {% for resource in entity.item.entityresource_set.all %}
+                        {% with template_name="short_"|add:resource.type|stringformat:"s"|add:".html" %}
+                            {% include "molecules/resources/"|add:template_name  %}
+                        {% endwith %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="col s11">
+                    <div class="left item-content">
+                        -
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    {% endfor %}
+</div>

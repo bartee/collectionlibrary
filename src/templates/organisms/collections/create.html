@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Create collection {% endblock %}
+{% block content %}
+    <style>
+        div.autocomplete {
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        div.autocomplete .ac-dropdown .ac-hover {
+            background: #eee;
+        }
+        div.autocomplete.ac-input {
+            -ms-flex: 1;
+            flex: 1;
+            min-width: 150px;
+            position: relative;
+            padding-top: 0.6rem;
+        }
+        div.autocomplete.ac-input input {
+            height: 2.4rem;
+        }
+        div.autocomplete.ac-input ul {
+            position: absolute;
+            top: 45px;
+            left: 11.25px;
+            opacity: 1;
+            display: none;
+        }
+    </style>
+
+    <h1>Add collection</h1>
+    <form action="" method="post" id="collection_form">{% csrf_token %}
+        <div class="row">
+            <div class="col s12">
+                <label for="id_name">{{ form.name.label }}</label>
+                {{ form.name}}
+            </div>
+            <div class="col s6">
+                <label for="id_start_date">{{ form.start_date.label }}</label>
+                {{ form.start_date }}
+            </div>
+            <div class="col s6">
+                <label for="id_end_date">{{ form.end_date.label }}</label>
+                {{ form.end_date }}
+            </div>
+        </div>
+
+        <div id="output_container"></div>
+        <div id="relational_form" class="row hide">
+            <div class="col s3">
+                <input name="collection_itemform['name'][]" type="hidden" class="datefield"/>
+                <div class="datefield_display"></div>
+            </div>
+            <div class="col s5 autocomplete ac-input">
+                <input name="collection_itemform['entity'][]" data-beloworigin="true" class="entity" type="text" placeholder="Search for entity..." />
+            </div>
+            <div class="col s4">
+                <textarea name="colleciton_itemform['note'][]" class="note" placeholder="Enter an optional note"></textarea>
+            </div>
+        </div>
+        <input type="submit" value="Save" class="btn"/>
+    </form>
+
+{% endblock %}
+
+{% block scripts_bottom %}
+    <script type="text/javascript" src="{% static "js/class.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/vendor/jquery.materialize-autocomplete.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/catalog/collection_form_handlers.js" %}"></script>
+{% endblock %}}
