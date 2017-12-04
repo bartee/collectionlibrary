@@ -75,7 +75,6 @@ class CollectionModelAdmin(admin.ModelAdmin):
         obj.save()
 
 
-
 @admin.register(CollectionItem)
 class CollectionItemModelAdmin(admin.ModelAdmin):
     list_display = ('collection', 'item', 'entry_description')

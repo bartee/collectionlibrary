@@ -6,6 +6,7 @@ from catalog.models import Collection, Entity
 from catalog.services import get_entities_for_collection
 from catalog.forms import CollectionEntityFormset, CollectionForm
 
+
 class CollectionDetailView(DetailView):
     """
     Verify permissions as well
