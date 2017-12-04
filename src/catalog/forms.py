@@ -1,6 +1,7 @@
 from dal import autocomplete
 from django import forms
 from django.forms.models import inlineformset_factory
+from datetime import datetime
 
 from catalog.models import Collection, EntityResource, CollectionItem
 
@@ -41,8 +42,8 @@ class EntityResourceForm(forms.ModelForm):
 
 class CollectionForm(forms.ModelForm):
 
-    start_date = forms.DateField(widget=AdminDateWidget(attrs={'class':'datepicker'}))
-    end_date = forms.DateField(widget=AdminDateWidget(attrs={'class':'datepicker'}))
+    start_date = forms.CharField(widget=AdminDateWidget(attrs={'class':'datepicker'}))
+    end_date = forms.CharField(widget=AdminDateWidget(attrs={'class':'datepicker'}))
     name = forms.CharField()
 
     class Meta:
@@ -63,7 +64,14 @@ class CollectionForm(forms.ModelForm):
         cleaned_data = super(CollectionForm, self).clean()
         start_date = cleaned_data.get('start_date')
         end_date = cleaned_data.get('end_date')
-        verbose_name = cleaned_data.get('verbose_name')
+        verbose_name = cleaned_data.get('name')
+
+        startobj = datetime.strptime(start_date, '%d %B, %Y')
+        endobj = datetime.strptime(end_date, '%d %B, %Y')
+
+        self.cleaned_data['name'] = '{0} ({1} - {2})'.format(verbose_name,
+                                                             startobj.strftime('%d/%m'),
+                                                             endobj.strftime('%d/%m'))
 
 
 class CollectionEntityForm(forms.ModelForm):

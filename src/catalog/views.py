@@ -45,3 +45,22 @@ class CollectionCreateView(FormView):
     template_name = 'organisms/collections/create.html'
     success_url = '/'
 
+    def post(self, request, *args, **kwargs):
+        return super(CollectionCreateView, self).post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        """
+        Form is valid: create a new collection with its related items
+        - Aggregate the name. Shall we do that in the form? Yes.
+        - Store the instance, remember the ID
+
+        - Iterate over all related items, and create them.
+        - For each related item, create a note if necessary.
+        :param form:
+        :return:
+        """
+
+        coll = Collection(owner=self.request.user, name=form.cleaned_data['name'], template='default')
+        coll.save()
+
+        return super(CollectionCreateView, self).form_valid(form)

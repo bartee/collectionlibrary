@@ -50,5 +50,31 @@ Row:
     font-style: italic;
     width: 30%;
 }
-.collection-item.weekview .item_content .references {
+/**
+ * Collection form
+ */
+div.autocomplete {
+    display: -ms-flexbox;
+    display: flex;
+}
+
+div.autocomplete .ac-dropdown .ac-hover {
+    background: #eee;
+}
+div.autocomplete.ac-input {
+    -ms-flex: 1;
+    flex: 1;
+    min-width: 150px;
+    position: relative;
+    padding-top: 0.6rem;
+}
+div.autocomplete.ac-input input {
+    height: 2.4rem;
+}
+div.autocomplete.ac-input ul {
+    position: absolute;
+    top: 45px;
+    left: 11.25px;
+    opacity: 1;
+    display: none;
 }
