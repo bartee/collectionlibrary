@@ -11,3 +11,11 @@ DATABASES = {
         'CONN_MAX_AGE': 0     # No persistend connections
     }
 }
+
+import cloudinary
+
+cloudinary.config(
+    cloud_name="gajemeeuit",
+    api_key="756932446195744",
+    # api_secret="https://cloudinary.com/console"
+)
