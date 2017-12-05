@@ -1,1 +1,8 @@
-<h2>All Items</h2>
+{% load i18n %}
+<h2>
+    {% trans "All items" %}
+    {% with icon="add" title="Add an item" extra_class=" grey right" %}
+        {% url 'collection_create' as hyperlink %}
+        {% include "atoms/buttons/icon_floating.html" %}
+    {% endwith %}
+</h2>

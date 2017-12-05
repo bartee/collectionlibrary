@@ -1,11 +1,17 @@
-<h2>All collections  <a href="{% url 'collection_create' %}" class="btn-floating waves-effect waves-light grey right"><i class="material-icons">add</i></a>
+{% load i18n %}
+<h2>
+    {% trans "All collections" %}
+    {% with icon="add" title="Add a collection" extra_class=" grey right" %}
+        {% url 'collection_create' as hyperlink %}
+        {% include "atoms/buttons/icon_floating.html" %}
+    {% endwith %}
 </h2>
 <div class="collection">
-{% for collection in collections %}
+    {% for collection in collections %}
         {% with template_name=collection.template|stringformat:"s"|add:"/collectionoverview_listitem.html" %}
             {% include "molecules/collectiontypes/"|add:template_name  %}
         {% endwith %}
-{% empty %}
-    Nothing here
-{% endfor %}
+    {% empty %}
+        {% trans "Collection list is empty" %}
+    {% endfor %}
 </div>

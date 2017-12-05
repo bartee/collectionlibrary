@@ -7,7 +7,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{% block title %}{% endblock %}</title>
         <link rel="stylesheet" href="{% static "css/vendor/font-awesome.css" %}" />
-{#        <link rel="stylesheet" href="{% static "css/foundation.css" %}" />#}
         <link rel="stylesheet" href="{% static "css/app.css" %}" />
 
         <!-- Compiled and minified CSS -->
@@ -36,11 +35,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
         <script src="{% static "js/vendor/what-input.js" %}"></script>
-{#        <script src="{% static "js/vendor/foundation.js" %}"></script>#}
-
-{#        <script src="{% static "js/app.js" %}"></script>#}
-        <!-- Add your site or application content here -->
         {% block scripts_bottom %}{% endblock %}
+
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
         <script>
             window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;

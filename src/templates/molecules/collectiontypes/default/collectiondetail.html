@@ -1,6 +1,12 @@
 <div class="collection with-header">
     <div class="collection-header">
-        <h5>{{ object.name }}</h5>
+        <h5>
+            {% with icon="chevron_left" title="back"%}
+                {% url 'dashboard' as hyperlink %}
+                {% include "atoms/buttons/icon_floating.html" %}
+            {% endwith %}
+            {{ object.name }}
+        </h5>
     </div>
     {% for key, entity in entity_list.items %}
         <div class="collection-item weekview valign-wrapper hoverable row">
