@@ -1,4 +1,5 @@
-<h2>All collections</h2>
+<h2>All collections  <a href="{% url 'collection_create' %}" class="btn-floating waves-effect waves-light grey right"><i class="material-icons">add</i></a>
+</h2>
 <div class="collection">
 {% for collection in collections %}
         {% with template_name=collection.template|stringformat:"s"|add:"/collectionoverview_listitem.html" %}

@@ -10,7 +10,9 @@
             {% if entity %}
                 <div class="col s9">
                     <div class="left item-content">
-                        {{ entity.item }}
+                        {% if entity.item %}
+                            {{ entity.item }}
+                        {% endif %}
                     {% if entity.notes %}
                         <div class="right meta-content">
                             {{ entity.notes.value }}

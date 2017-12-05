@@ -18,7 +18,7 @@
                 <label for="id_end_date">{{ form.end_date.label }}</label>
                 {{ form.end_date }}
             </div>
-            <input type="text" name="collection_relations" id="collection_relations" />
+            <input type="hidden" name="collection_relations" id="collection_relations" />
         </div>
 
         <div id="output_container"></div>
@@ -28,7 +28,7 @@
                 <div class="datefield_display"></div>
             </div>
             <div class="col s5 autocomplete ac-input">
-                <input name="collection_itemform['entity'][]" data-beloworigin="true" class="entity" type="text" placeholder="Search for entity..." />
+                <input name="collection_itemform['entity'][]" data-beloworigin="true" class="entity" type="text" autocomplete="off" placeholder="Search for entity..." />
             </div>
             <div class="col s4">
                 <textarea name="collection_itemform['note'][]" class="note" placeholder="Enter an optional note"></textarea>

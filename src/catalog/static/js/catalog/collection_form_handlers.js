@@ -100,7 +100,7 @@ var CollectionFormController = Class.extend({
         }).bind(resultset);
 
         this.entity_relations = resultset;
-        this.elements.related_entities.val(jQuery(resultset).serialize());
+        this.elements.related_entities.val(JSON.stringify(resultset));
     },
 
     /**

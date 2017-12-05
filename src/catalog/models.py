@@ -99,6 +99,6 @@ class CollectionItem(models.Model):
 
     """
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
-    item = models.ForeignKey(Entity, on_delete=models.CASCADE)
+    item = models.ForeignKey(Entity, on_delete=models.CASCADE, blank=True, null=True)
     entry_description = models.CharField(max_length=100)
-    notes = models.ForeignKey(Note, on_delete=models.CASCADE)
+    notes = models.ForeignKey(Note, on_delete=models.CASCADE, blank=True, null=True)

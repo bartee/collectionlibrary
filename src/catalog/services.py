@@ -31,9 +31,11 @@ class WeeklyCollectionEntityService(BaseCollectionEntityService):
     @staticmethod
     def get_entities(collection):
 
-        res = {'ma': None, 'di': None, 'wo': None, 'do': None, 'vr': None, 'za': None, 'zo': None}
+        res = {}
         entities = CollectionItem.objects.filter(collection=collection).select_related().all()
         for entity in entities:
+            # @TODO The entity_description is the date. Order these entities by date.
+            # Takes some serious date parsing.
             res.update({entity.entry_description: entity})
         return res
 
