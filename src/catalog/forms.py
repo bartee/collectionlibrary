@@ -2,6 +2,7 @@ from dal import autocomplete
 from django import forms
 from django.forms.models import inlineformset_factory
 from datetime import datetime
+from cloudinary.forms import CloudinaryFileField
 
 from catalog.models import Collection, EntityResource, CollectionItem
 
@@ -13,7 +14,7 @@ from django.contrib.admin.widgets import AdminDateWidget
 class EntityResourceForm(forms.ModelForm):
 
     url = forms.URLField(required=False);
-    image = forms.ImageField(required=False);
+    image = CloudinaryFileField(required=False)
 
     class Meta:
         model = EntityResource

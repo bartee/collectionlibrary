@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'braces',
     'catalog',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [

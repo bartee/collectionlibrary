@@ -1,6 +1,5 @@
 from dal import autocomplete
 from django.views.generic import DetailView, FormView
-from django.urls import reverse
 import json
 import logging
 from datetime import datetime

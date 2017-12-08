@@ -1,5 +1,6 @@
 from django.utils.translation import ugettext as _
 from django import forms
+from cloudinary import CloudinaryImage
 import json
 
 
@@ -59,7 +60,10 @@ class LinkEntityResourceTypeHandler(BaseEntityResourceTypeHandler):
 
 
 class ImageEntityResourceTypeHandler(BaseEntityResourceTypeHandler):
+    """
+    Image, using Cloudinary for data store.
 
+    """
     def validate(self, data):
         image= data.get('image')
         if not image:
@@ -68,12 +72,19 @@ class ImageEntityResourceTypeHandler(BaseEntityResourceTypeHandler):
     def parse_data(self, data, *args, **kwargs):
         data = kwargs.get('data')
         result = json.loads(data)
-        return result.get('src')
+        return result.get('image')
 
     def get_data(self, cleaned_data, *args, **kwargs):
-        url = cleaned_data.get('url')
-        return {'src': url}
+        image_obj = cleaned_data.get('image')
+        return {'image_id': image_obj.public_id, 'metadata': image_obj.metadata }
 
+    def display_content(self, instance, style='full', *args, **kwargs):
+        data_dict = json.loads(instance.data)
+        image_id = data_dict.get('image_id')
+        img = CloudinaryImage(public_id=image_id)
+        if style=='full':
+            return img.image()
+        return img.image(height=50)
 
 ENTITY_TYPE_HANDLERS = {
     'url': LinkEntityResourceTypeHandler,

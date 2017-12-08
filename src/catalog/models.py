@@ -65,7 +65,7 @@ class EntityResource(models.Model):
 
     type = models.CharField(max_length=25, choices=RESOURCE_TYPES, default='url')
     data = models.TextField()
-    description = models.TextField()
+    description = models.CharField(max_length=255)
 
     def __str__(self):
         return "{0} - ({1})".format(self.entity, self.type)

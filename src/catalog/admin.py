@@ -35,7 +35,7 @@ class EntityResourceModelAdmin(admin.ModelAdmin):
         type = form.type
         handler_class = ENTITY_TYPE_HANDLERS.get(type,BaseEntityResourceTypeHandler)
         handler_instance = handler_class()
-        return format_html(handler_instance.display_content(form))
+        return format_html(handler_instance.display_content(form,'compact'))
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(EntityResourceModelAdmin, self).get_form(request, obj, **kwargs)
