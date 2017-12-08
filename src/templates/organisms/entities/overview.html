@@ -6,3 +6,12 @@
         {% include "atoms/buttons/icon_floating.html" %}
     {% endwith %}
 </h2>
+
+<ul class="collection">
+    {% for entity in entities %}
+        {% include "molecules/entities/overview_listitem.html" %}
+    {% empty %}
+        <li>{% trans "Entity list is empty" %}</li>
+    {% endfor %}
+</ul>
+

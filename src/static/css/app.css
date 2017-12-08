@@ -1,3 +1,22 @@
+/**
+ * MaterializeCSS patch
+ */
+
+.material-icons {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+.chip.small {
+    height:16px;
+    line-height:16px;
+    padding: 0 6px;
+}
+
+.padding_correction {
+    margin: -10px;
+}
+
 .meta-content,
 span.badge.meta-title {
     font-size: 0.75rem;

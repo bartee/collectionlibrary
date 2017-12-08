@@ -90,3 +90,8 @@ ENTITY_TYPE_HANDLERS = {
     'url': LinkEntityResourceTypeHandler,
     'image': ImageEntityResourceTypeHandler
 }
+
+ENTITY_TYPE_ICONS = {
+    'url': 'link',
+    'image': 'image'
+}

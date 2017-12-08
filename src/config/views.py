@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 
-from catalog.services import get_collections_for_user
+from catalog.services import get_collections_for_user, get_entities_for_user
 
 
 class DashboardView(TemplateView):
@@ -14,5 +14,8 @@ class DashboardView(TemplateView):
         :return:
         """
         context = super(DashboardView,self).get_context_data(**kwargs)
+
         context['collections'] = get_collections_for_user(self.request.user)
+        context['entities'] = get_entities_for_user(self.request.user)
+
         return context

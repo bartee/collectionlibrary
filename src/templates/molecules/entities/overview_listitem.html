@@ -1,0 +1,19 @@
+{% load cataloglibrarytags %}
+<li class="collection-item">
+    <div class="title">
+        {{ entity.name }}
+        <div class="meta-content padding_correction right">
+            {{ entity.created_at|date:"D d M Y" }}<br/>
+            {% if entity.resource_counters %}
+                {% for key, counter in entity.resource_counters.items %}
+                    {% with value=counter extra_class="small right new"%}
+                        {% icon_for_resourcetype key as icon %}
+                        {% include "atoms/badges/icon_text.html" %}
+                    {% endwith %}
+                {% endfor %}
+            {% else %}
+                <b>no links to be found!</b>
+            {% endif %}
+        </div>
+    </div>
+</li>
