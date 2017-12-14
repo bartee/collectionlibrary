@@ -27,6 +27,11 @@ class TimestampedModel(models.Model):
     class Meta:
         abstract = True
 
+class Tag(models.Model):
+    name = models.CharField(max_length=25)
+
+    def __str__(self):
+        return self.name
 
 class Collection(PrivateShareableModel, TimestampedModel):
     """
@@ -43,11 +48,14 @@ class Collection(PrivateShareableModel, TimestampedModel):
     def __str__(self):
         return self.name
 
+
 class Entity(PrivateShareableModel, TimestampedModel):
     """
     An entity that can be added into a list. It has a name, an image, an owner, it can be public as well.
     """
     name = models.CharField(max_length=100)
+    tags = models.ManyToManyField(Tag, related_name='tags')
+    rating = models.IntegerField(max_length=1, blank=True, default=None)
 
     def __str__(self):
         return self.name
@@ -72,6 +80,7 @@ class EntityResource(models.Model):
     @property
     def data_dict(self):
         return json.loads(self.data)
+
 
 class Note(models.Model):
     """

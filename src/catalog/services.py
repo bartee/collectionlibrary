@@ -18,10 +18,12 @@ def get_entities_for_user(user):
     """
     Returns all entities for a given user, appended with all public entities.
 
+    @TODO add count
+
     :param user:
     :return:
     """
-    entities = Entity.objects.filter(owner=user).order_by('-created_at').all()
+    entities = Entity.objects.filter(owner=user).order_by('name').all()
     resources = EntityResource.objects.filter(entity__in=entities).all()
 
     # Append the resource counters to it.
