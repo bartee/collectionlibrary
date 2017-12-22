@@ -1,8 +1,8 @@
 from django.db import migrations
 
 tag_names = ['snel', 'slank', 'vegetarisch', 'pasta', 'aziatisch', 'soep', 'stamppot', 'dessert', 'Baksel', 'lunch',
-                'winter', 'zomer', 'lente', 'herfst', 'uitproberen!', 'wild', 'speciaal', 'mexicaans', 'rijst',
-                'hartige taart', 'snackvoer']
+            'winter', 'zomer', 'lente', 'herfst', 'uitproberen!', 'wild', 'speciaal', 'mexicaans', 'rijst',
+            'hartige taart', 'snackvoer']
 
 def forwards_func(apps, schema_editor):
     """
