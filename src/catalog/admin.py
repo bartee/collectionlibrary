@@ -36,9 +36,9 @@ class EntityResourceModelAdmin(admin.ModelAdmin):
 
     def resource_content(self, form):
         type = form.type
-        handler_class = ENTITY_TYPE_HANDLERS.get(type,BaseEntityResourceTypeHandler)
+        handler_class = ENTITY_TYPE_HANDLERS.get(type, BaseEntityResourceTypeHandler)
         handler_instance = handler_class()
-        return format_html(handler_instance.display_content(form,'compact'))
+        return format_html(handler_instance.display_content(form, 'compact'))
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(EntityResourceModelAdmin, self).get_form(request, obj, **kwargs)
@@ -48,7 +48,7 @@ class EntityResourceModelAdmin(admin.ModelAdmin):
             handler_instance = handler_class()
 
             initial_dataset = handler_instance.parse_data(obj.data)
-            for key,value in initial_dataset.items():
+            for key, value in initial_dataset.items():
                 form.base_fields[key].initial = value
         return form
 

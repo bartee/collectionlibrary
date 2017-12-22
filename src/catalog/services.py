@@ -71,6 +71,7 @@ class WeeklyCollectionEntityService(BaseCollectionEntityService):
 
 collection_service_type_index = {'default': WeeklyCollectionEntityService}
 
+
 def get_entities_for_collection(collection):
     """
     Return all the entities for the given collection

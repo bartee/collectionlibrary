@@ -34,6 +34,7 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+
 class Collection(PrivateShareableModel, TimestampedModel):
     """
     A list of items
@@ -67,7 +68,7 @@ class Entity(PrivateShareableModel, TimestampedModel):
 
 class EntityResource(models.Model):
 
-    RESOURCE_TYPES = (('image', 'Image'), ('url','Link'))
+    RESOURCE_TYPES = (('image', 'Image'), ('url', 'Link'))
 
     entity = models.ForeignKey(to=Entity, on_delete=models.CASCADE, blank=True, default=None)
 
@@ -92,7 +93,7 @@ class Note(models.Model):
     value = models.TextField()
 
     def __str__(self):
-        if len(self.value) > 5 :
+        if len(self.value) > 5:
             return "{}...".format(self.value[:4])
         return self.value
 

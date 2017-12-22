@@ -5,11 +5,12 @@ from datetime import datetime
 from dal import autocomplete
 from django.views.generic import DetailView, FormView
 
-from catalog.forms import CollectionEntityFormset, CollectionForm
+from catalog.forms import CollectionForm
 from catalog.models import Collection, CollectionItem, Entity, Note
 from catalog.services import get_entities_for_collection
 
 logger = logging.getLogger(__name__)
+
 
 class CollectionDetailView(DetailView):
     """
@@ -110,6 +111,5 @@ class CollectionCreateView(FormView):
                 collectionitem.notes = note
 
             collectionitem.save()
-
 
         return super(CollectionCreateView, self).form_valid(form)

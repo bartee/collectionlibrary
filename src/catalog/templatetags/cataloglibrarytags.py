@@ -4,6 +4,7 @@ from catalog.entity_resource_data_handlers import ENTITY_TYPE_ICONS
 
 register = template.Library()
 
+
 @register.simple_tag
 def icon_for_resourcetype(type):
     """

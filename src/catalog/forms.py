@@ -5,6 +5,7 @@ from dal import autocomplete
 from django import forms
 from django.contrib.admin.widgets import AdminDateWidget
 from django.forms.models import inlineformset_factory
+from django.utils.translation import ugettext as _
 
 from catalog.entity_resource_data_handlers import (ENTITY_TYPE_HANDLERS,
                                                    BaseEntityResourceTypeHandler,
@@ -15,7 +16,7 @@ from catalog.models import Collection, CollectionItem, EntityResource
 
 class EntityResourceForm(forms.ModelForm):
 
-    url = forms.URLField(required=False);
+    url = forms.URLField(required=False)
     image = CloudinaryFileField(required=False)
 
     class Meta:
@@ -45,8 +46,8 @@ class EntityResourceForm(forms.ModelForm):
 
 class CollectionForm(forms.ModelForm):
 
-    start_date = forms.CharField(widget=AdminDateWidget(attrs={'class':'datepicker'}))
-    end_date = forms.CharField(widget=AdminDateWidget(attrs={'class':'datepicker'}))
+    start_date = forms.CharField(widget=AdminDateWidget(attrs={'class': 'datepicker'}))
+    end_date = forms.CharField(widget=AdminDateWidget(attrs={'class': 'datepicker'}))
     name = forms.CharField()
 
     class Meta:
@@ -56,7 +57,6 @@ class CollectionForm(forms.ModelForm):
 
     class Media:
         js = ('js/class.js', 'js/catalog/collection_form_handlers.js',)
-
 
     def clean(self):
         """
@@ -83,7 +83,7 @@ class CollectionEntityForm(forms.ModelForm):
     """
 
     def __init__(self, *args, **kwargs):
-        super(CollectionEntityForm, self).__init(*args,**kwargs)
+        super(CollectionEntityForm, self).__init(*args, **kwargs)
 
     class Meta:
         model = CollectionItem
