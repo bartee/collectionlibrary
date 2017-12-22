@@ -1,15 +1,17 @@
+from datetime import datetime
+
+from cloudinary.forms import CloudinaryFileField
 from dal import autocomplete
 from django import forms
-from django.forms.models import inlineformset_factory
-from datetime import datetime
-from cloudinary.forms import CloudinaryFileField
-
-from catalog.models import Collection, EntityResource, CollectionItem
-
-from catalog.entity_resource_data_handlers import ENTITY_TYPE_HANDLERS, BaseEntityResourceTypeHandler, \
-    LinkEntityResourceTypeHandler, ImageEntityResourceTypeHandler
-
 from django.contrib.admin.widgets import AdminDateWidget
+from django.forms.models import inlineformset_factory
+
+from catalog.entity_resource_data_handlers import (ENTITY_TYPE_HANDLERS,
+                                                   BaseEntityResourceTypeHandler,
+                                                   ImageEntityResourceTypeHandler,
+                                                   LinkEntityResourceTypeHandler)
+from catalog.models import Collection, CollectionItem, EntityResource
+
 
 class EntityResourceForm(forms.ModelForm):
 

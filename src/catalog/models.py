@@ -27,6 +27,7 @@ class TimestampedModel(models.Model):
     class Meta:
         abstract = True
 
+
 class Tag(models.Model):
     name = models.CharField(max_length=25)
 

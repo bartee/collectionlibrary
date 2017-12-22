@@ -1,12 +1,13 @@
-from dal import autocomplete
-from django.views.generic import DetailView, FormView
 import json
 import logging
 from datetime import datetime
 
-from catalog.models import Collection, Entity, CollectionItem, Note
-from catalog.services import get_entities_for_collection
+from dal import autocomplete
+from django.views.generic import DetailView, FormView
+
 from catalog.forms import CollectionEntityFormset, CollectionForm
+from catalog.models import Collection, CollectionItem, Entity, Note
+from catalog.services import get_entities_for_collection
 
 logger = logging.getLogger(__name__)
 
