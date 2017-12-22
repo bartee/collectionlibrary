@@ -6,7 +6,7 @@ from cloudinary.forms import CloudinaryFileField
 
 from catalog.models import Collection, EntityResource, CollectionItem
 
-from catalog.data_handlers import ENTITY_TYPE_HANDLERS, BaseEntityResourceTypeHandler, \
+from catalog.entity_resource_data_handlers import ENTITY_TYPE_HANDLERS, BaseEntityResourceTypeHandler, \
     LinkEntityResourceTypeHandler, ImageEntityResourceTypeHandler
 
 from django.contrib.admin.widgets import AdminDateWidget

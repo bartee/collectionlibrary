@@ -65,7 +65,7 @@ class ImageEntityResourceTypeHandler(BaseEntityResourceTypeHandler):
 
     """
     def validate(self, data):
-        image= data.get('image')
+        image = data.get('image')
         if not image:
             raise forms.ValidationError(_('No Image was entered while the type was set to image.'))
 
@@ -76,22 +76,47 @@ class ImageEntityResourceTypeHandler(BaseEntityResourceTypeHandler):
 
     def get_data(self, cleaned_data, *args, **kwargs):
         image_obj = cleaned_data.get('image')
-        return {'image_id': image_obj.public_id, 'metadata': image_obj.metadata }
+        return {'image_id': image_obj.public_id, 'metadata': image_obj.metadata}
 
     def display_content(self, instance, style='full', *args, **kwargs):
         data_dict = json.loads(instance.data)
         image_id = data_dict.get('image_id')
         img = CloudinaryImage(public_id=image_id)
-        if style=='full':
+        if style == 'full':
             return img.image()
         return img.image(height=50)
 
+
+class TextEntityResourceTypeHandler(BaseEntityResourceTypeHandler):
+    """
+    Plain text field, to attach to entities
+    """
+    def validate(self, data):
+        text = data.get('text')
+        if not text:
+            raise forms.ValidationError(_('No text was entered, while the type was set to text'))
+
+    def parse_data(self, data, *args, **kwargs):
+        result = json.loads(data)
+        return result.get('text')
+
+    def get_data(self, cleaned_data, *args, **kwargs):
+        text = cleaned_data.get('text')
+        return {'text': text}
+
+    def display_content(self, instance, style='full', *args, **kwargs):
+        data_dict = json.loads(instance.data)
+        return data_dict.get('text')
+
+
 ENTITY_TYPE_HANDLERS = {
     'url': LinkEntityResourceTypeHandler,
-    'image': ImageEntityResourceTypeHandler
+    'image': ImageEntityResourceTypeHandler,
+    'text': TextEntityResourceTypeHandler
 }
 
 ENTITY_TYPE_ICONS = {
     'url': 'link',
-    'image': 'image'
+    'image': 'image',
+    'text': 'short_text'
 }

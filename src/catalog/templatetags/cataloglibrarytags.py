@@ -1,5 +1,5 @@
 from django import template
-from catalog.data_handlers import ENTITY_TYPE_ICONS
+from catalog.entity_resource_data_handlers import ENTITY_TYPE_ICONS
 
 register = template.Library()
 

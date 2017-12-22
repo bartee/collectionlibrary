@@ -5,7 +5,7 @@ from catalog.forms import EntityResourceForm, CollectionForm
 from catalog.models import (Collection, CollectionItem, Entity, EntityResource,
                             Note)
 
-from catalog.data_handlers import ENTITY_TYPE_HANDLERS, LinkEntityResourceTypeHandler, ImageEntityResourceTypeHandler, \
+from catalog.entity_resource_data_handlers import ENTITY_TYPE_HANDLERS, LinkEntityResourceTypeHandler, ImageEntityResourceTypeHandler, \
     BaseEntityResourceTypeHandler
 
 
