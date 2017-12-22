@@ -18,6 +18,7 @@ class EntityResourceForm(forms.ModelForm):
 
     url = forms.URLField(required=False)
     image = CloudinaryFileField(required=False)
+    text = forms.CharField(required=False)
 
     class Meta:
         model = EntityResource

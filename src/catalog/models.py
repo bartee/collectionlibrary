@@ -68,7 +68,7 @@ class Entity(PrivateShareableModel, TimestampedModel):
 
 class EntityResource(models.Model):
 
-    RESOURCE_TYPES = (('image', 'Image'), ('url', 'Link'))
+    RESOURCE_TYPES = (('image', 'Image'), ('url', 'Link'), ('text', 'Text'))
 
     entity = models.ForeignKey(to=Entity, on_delete=models.CASCADE, blank=True, default=None)
 

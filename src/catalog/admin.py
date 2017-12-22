@@ -43,7 +43,6 @@ class EntityResourceModelAdmin(admin.ModelAdmin):
     def get_form(self, request, obj=None, **kwargs):
         form = super(EntityResourceModelAdmin, self).get_form(request, obj, **kwargs)
         if obj:
-
             handler_class = ENTITY_TYPE_HANDLERS.get(obj.type, BaseEntityResourceTypeHandler)
             handler_instance = handler_class()
 
