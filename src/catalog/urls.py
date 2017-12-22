@@ -1,7 +1,6 @@
 from django.urls import path
 
-from .views import (CollectionCreateView, CollectionDetailView,
-                    EntitiesForUserAutocomplete)
+from .views import CollectionCreateView, CollectionDetailView, EntitiesForUserAutocomplete
 
 urlpatterns = [
     path('collection/<int:pk>/', CollectionDetailView.as_view(), name="collection_detail"),

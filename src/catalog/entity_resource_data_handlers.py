@@ -1,8 +1,9 @@
 import json
 
-from cloudinary import CloudinaryImage
 from django import forms
 from django.utils.translation import ugettext as _
+
+from cloudinary import CloudinaryImage
 
 
 class BaseEntityResourceTypeHandler(object):

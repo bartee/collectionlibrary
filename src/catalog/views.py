@@ -2,8 +2,9 @@ import json
 import logging
 from datetime import datetime
 
-from dal import autocomplete
 from django.views.generic import DetailView, FormView
+
+from dal import autocomplete
 
 from catalog.forms import CollectionForm
 from catalog.models import Collection, CollectionItem, Entity, Note

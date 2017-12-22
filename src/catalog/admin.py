@@ -3,13 +3,11 @@ import json
 from django.contrib import admin
 from django.utils.html import format_html
 
-from catalog.entity_resource_data_handlers import (ENTITY_TYPE_HANDLERS,
-                                                   BaseEntityResourceTypeHandler,
-                                                   ImageEntityResourceTypeHandler,
-                                                   LinkEntityResourceTypeHandler)
+from catalog.entity_resource_data_handlers import (
+    ENTITY_TYPE_HANDLERS, BaseEntityResourceTypeHandler, ImageEntityResourceTypeHandler, LinkEntityResourceTypeHandler
+)
 from catalog.forms import CollectionForm, EntityResourceForm
-from catalog.models import (Collection, CollectionItem, Entity, EntityResource,
-                            Note)
+from catalog.models import Collection, CollectionItem, Entity, EntityResource, Note
 
 
 class CollectionItemInline(admin.TabularInline):
