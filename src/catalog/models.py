@@ -57,7 +57,7 @@ class Entity(PrivateShareableModel, TimestampedModel):
     """
     name = models.CharField(max_length=100)
     tags = models.ManyToManyField(Tag, related_name='tags')
-    rating = models.IntegerField(max_length=1, blank=True, default=None)
+    rating = models.IntegerField(blank=True, default=None)
 
     def __str__(self):
         return self.name
