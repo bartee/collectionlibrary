@@ -4,6 +4,8 @@ from django import forms
 from django.utils.translation import ugettext as _
 
 from cloudinary import CloudinaryImage
+import logging
+logger = logging.getLogger(__name__)
 
 
 class BaseEntityResourceTypeHandler(object):
@@ -111,14 +113,30 @@ class TextEntityResourceTypeHandler(BaseEntityResourceTypeHandler):
         return data_dict.get('text')
 
 
-ENTITY_TYPE_HANDLERS = {
-    'url': LinkEntityResourceTypeHandler,
-    'image': ImageEntityResourceTypeHandler,
-    'text': TextEntityResourceTypeHandler
-}
-
 ENTITY_TYPE_ICONS = {
     'url': 'link',
     'image': 'image',
     'text': 'short_text'
 }
+
+
+class EntityResourceTypeFactory(object):
+    """
+
+    """
+    ENTITY_TYPE_HANDLERS = {
+        'url': LinkEntityResourceTypeHandler,
+        'image': ImageEntityResourceTypeHandler,
+        'text': TextEntityResourceTypeHandler
+    }
+
+    @staticmethod
+    def get_handler_by_type(type):
+        """
+        Get the handler for type
+
+        :param obj:
+        :return:
+        """
+        handler = EntityResourceTypeFactory.ENTITY_TYPE_HANDLERS.get(type, BaseEntityResourceTypeHandler)
+        return handler()

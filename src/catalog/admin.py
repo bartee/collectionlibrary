@@ -3,9 +3,7 @@ import json
 from django.contrib import admin
 from django.utils.html import format_html
 
-from catalog.entity_resource_data_handlers import (
-    ENTITY_TYPE_HANDLERS, BaseEntityResourceTypeHandler, ImageEntityResourceTypeHandler, LinkEntityResourceTypeHandler
-)
+from catalog.entity_resource_data_handlers import EntityResourceTypeFactory
 from catalog.forms import CollectionForm, EntityResourceForm
 from catalog.models import Collection, CollectionItem, Entity, EntityResource, Note
 
@@ -34,16 +32,14 @@ class EntityResourceModelAdmin(admin.ModelAdmin):
 
     def resource_content(self, form):
         type = form.type
-        handler_class = ENTITY_TYPE_HANDLERS.get(type, BaseEntityResourceTypeHandler)
-        handler_instance = handler_class()
+
+        handler_instance = EntityResourceTypeFactory.get_handler_by_type(type)
         return format_html(handler_instance.display_content(form, 'compact'))
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(EntityResourceModelAdmin, self).get_form(request, obj, **kwargs)
         if obj:
-            handler_class = ENTITY_TYPE_HANDLERS.get(obj.type, BaseEntityResourceTypeHandler)
-            handler_instance = handler_class()
-
+            handler_instance = EntityResourceTypeFactory.get_handler_by_type(type)
             initial_dataset = handler_instance.parse_data(obj.data)
             for key, value in initial_dataset.items():
                 form.base_fields[key].initial = value
@@ -51,9 +47,9 @@ class EntityResourceModelAdmin(admin.ModelAdmin):
 
     def save_model(self, request, obj, form, change):
         type = obj.type
+
         # Transform the form input to valid instance data.
-        handler_class = ENTITY_TYPE_HANDLERS.get(type, BaseEntityResourceTypeHandler)
-        handler_instance = handler_class()
+        handler_instance = EntityResourceTypeFactory.get_handler_by_type(type)
         obj.data = json.dumps(handler_instance.get_data(form.cleaned_data))
         obj.save()
 

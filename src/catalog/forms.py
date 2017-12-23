@@ -8,9 +8,7 @@ from django.utils.translation import ugettext as _
 from cloudinary.forms import CloudinaryFileField
 from dal import autocomplete
 
-from catalog.entity_resource_data_handlers import (
-    ENTITY_TYPE_HANDLERS, BaseEntityResourceTypeHandler, ImageEntityResourceTypeHandler, LinkEntityResourceTypeHandler
-)
+from catalog.entity_resource_data_handlers import EntityResourceTypeFactory
 from catalog.models import Collection, CollectionItem, EntityResource
 
 
@@ -38,11 +36,8 @@ class EntityResourceForm(forms.ModelForm):
 
         if type not in [index[0] for index in EntityResource.RESOURCE_TYPES]:
             raise forms.ValidationError(_('{type} is an unknown EntityResource type'.format(type=type)))
-
-        handler = ENTITY_TYPE_HANDLERS.get(type, BaseEntityResourceTypeHandler)
-
-        instance = handler()
-        instance.validate(cleaned_data)
+        handler = EntityResourceTypeFactory.get_handler_by_type(type)
+        handler.validate(cleaned_data)
 
 
 class CollectionForm(forms.ModelForm):
