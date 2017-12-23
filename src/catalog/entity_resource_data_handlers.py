@@ -122,9 +122,7 @@ ENTITY_TYPE_ICONS = {
 
 
 class EntityResourceTypeFactory(object):
-    """
 
-    """
     ENTITY_TYPE_HANDLERS = {
         'url': LinkEntityResourceTypeHandler,
         'image': ImageEntityResourceTypeHandler,

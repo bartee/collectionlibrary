@@ -1,0 +1,15 @@
+- repo: git://github.com/pre-commit/pre-commit-hooks
+  sha: v0.9.1
+  hooks:
+    - id: flake8
+      args:
+        - "--max-line-length=119"
+        - "--max-complexity=10"
+        - "--exclude=migrations,manage.py,venv,frontend,node_modules"
+- repo: local
+  hooks:
+    - id: isort
+      name: isort
+      entry: isort
+      language: system
+      types: [python]
