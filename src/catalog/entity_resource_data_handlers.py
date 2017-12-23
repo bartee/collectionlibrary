@@ -1,10 +1,11 @@
 import json
+import logging
 
 from django import forms
 from django.utils.translation import ugettext as _
 
 from cloudinary import CloudinaryImage
-import logging
+
 logger = logging.getLogger(__name__)
 
 
