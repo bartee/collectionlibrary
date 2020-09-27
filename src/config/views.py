@@ -15,7 +15,7 @@ class DashboardView(TemplateView):
         """
         context = super(DashboardView, self).get_context_data(**kwargs)
 
-        context['collections'] = get_collections_for_user(self.request.user)
-        context['entities'] = get_entities_for_user(self.request.user)
+        context["collections"] = get_collections_for_user(self.request.user)
+        context["entities"] = get_entities_for_user(self.request.user)
 
         return context

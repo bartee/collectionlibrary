@@ -7,13 +7,17 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0003_auto_20171117_1242'),
+        ("catalog", "0003_auto_20171117_1242"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='collectionitem',
-            name='item',
-            field=models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, to='catalog.Entity'),
+            model_name="collectionitem",
+            name="item",
+            field=models.ForeignKey(
+                blank=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="catalog.Entity",
+            ),
         ),
     ]

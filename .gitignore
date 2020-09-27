@@ -2,3 +2,5 @@
 __pycache__
 .idea
 frontend/node_modules
+src/config/settings/local.py
+.env

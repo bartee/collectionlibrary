@@ -6,25 +6,33 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0008_auto_20171208_1300'),
+        ("catalog", "0008_auto_20171208_1300"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Tag',
+            name="Tag",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=25)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=25)),
             ],
         ),
         migrations.AddField(
-            model_name='entity',
-            name='rating',
+            model_name="entity",
+            name="rating",
             field=models.IntegerField(blank=True, default=None, max_length=1),
         ),
         migrations.AddField(
-            model_name='entity',
-            name='tags',
-            field=models.ManyToManyField(related_name='tags', to='catalog.Tag'),
+            model_name="entity",
+            name="tags",
+            field=models.ManyToManyField(related_name="tags", to="catalog.Tag"),
         ),
     ]

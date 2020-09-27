@@ -7,18 +7,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0005_auto_20171205_0742'),
+        ("catalog", "0005_auto_20171205_0742"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='collectionitem',
-            name='item',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='catalog.Entity'),
+            model_name="collectionitem",
+            name="item",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="catalog.Entity",
+            ),
         ),
         migrations.AlterField(
-            model_name='collectionitem',
-            name='notes',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, to='catalog.Note'),
+            model_name="collectionitem",
+            name="notes",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="catalog.Note",
+            ),
         ),
     ]

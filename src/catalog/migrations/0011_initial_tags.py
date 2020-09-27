@@ -1,8 +1,29 @@
 from django.db import migrations
 
-tag_names = ['snel', 'slank', 'vegetarisch', 'pasta', 'aziatisch', 'soep', 'stamppot', 'dessert', 'Baksel', 'lunch',
-            'winter', 'zomer', 'lente', 'herfst', 'uitproberen!', 'wild', 'speciaal', 'mexicaans', 'rijst',
-            'hartige taart', 'snackvoer']
+tag_names = [
+    "snel",
+    "slank",
+    "vegetarisch",
+    "pasta",
+    "aziatisch",
+    "soep",
+    "stamppot",
+    "dessert",
+    "Baksel",
+    "lunch",
+    "winter",
+    "zomer",
+    "lente",
+    "herfst",
+    "uitproberen!",
+    "wild",
+    "speciaal",
+    "mexicaans",
+    "rijst",
+    "hartige taart",
+    "snackvoer",
+]
+
 
 def forwards_func(apps, schema_editor):
     """
@@ -43,11 +64,8 @@ def reverse_func(apps, schema_editor):
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('catalog', '0010_auto_20171222_1445' )
-    ]
+    dependencies = [("catalog", "0010_auto_20171222_1445")]
 
     operations = [
         migrations.RunPython(forwards_func, reverse_func),
     ]
-

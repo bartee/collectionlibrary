@@ -6,18 +6,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0007_auto_20171208_1259'),
+        ("catalog", "0007_auto_20171208_1259"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='entityresource',
-            name='data',
+            model_name="entityresource",
+            name="data",
             field=models.TextField(),
         ),
         migrations.AlterField(
-            model_name='entityresource',
-            name='description',
+            model_name="entityresource",
+            name="description",
             field=models.CharField(max_length=255),
         ),
     ]

@@ -14,11 +14,11 @@ class CollectionItemInline(admin.TabularInline):
 
 @admin.register(Entity)
 class EntityModelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'owner', 'is_public', 'created_at', 'updated_at')
+    list_display = ("name", "owner", "is_public", "created_at", "updated_at")
     exclude = ("created_at", "updated_at", "is_public", "owner")
 
     def save_model(self, request, obj, form, change):
-        if getattr(obj, 'owner', None) is None:
+        if getattr(obj, "owner", None) is None:
             obj.owner = request.user
         obj.save()
 
@@ -27,14 +27,14 @@ class EntityModelAdmin(admin.ModelAdmin):
 class EntityResourceModelAdmin(admin.ModelAdmin):
     form = EntityResourceForm
 
-    list_display = ('entity', 'type', 'resource_content')
-    radio_fields = {'type': admin.HORIZONTAL}
+    list_display = ("entity", "type", "resource_content")
+    radio_fields = {"type": admin.HORIZONTAL}
 
     def resource_content(self, form):
         type = form.type
 
         handler_instance = EntityResourceTypeFactory.get_handler_by_type(type)
-        return format_html(handler_instance.display_content(form, 'compact'))
+        return format_html(handler_instance.display_content(form, "compact"))
 
     def get_form(self, request, obj=None, **kwargs):
         form = super(EntityResourceModelAdmin, self).get_form(request, obj, **kwargs)
@@ -57,15 +57,27 @@ class EntityResourceModelAdmin(admin.ModelAdmin):
 @admin.register(Collection)
 class CollectionModelAdmin(admin.ModelAdmin):
     form = CollectionForm
-    list_display = ('name', 'template', 'owner', 'is_public', 'created_at', 'updated_at')
-    exclude = ("created_at", "updated_at", "is_public", "owner", "shared_with", "template")
+    list_display = (
+        "name",
+        "template",
+        "owner",
+        "is_public",
+        "created_at",
+        "updated_at",
+    )
+    exclude = (
+        "created_at",
+        "updated_at",
+        "is_public",
+        "owner",
+        "shared_with",
+        "template",
+    )
 
-    inlines = [
-        CollectionItemInline
-    ]
+    inlines = [CollectionItemInline]
 
     def save_model(self, request, obj, form, change):
-        if getattr(obj, 'owner', None) is None:
+        if getattr(obj, "owner", None) is None:
             obj.owner = request.user
         obj.template = "default"
         obj.save()
@@ -73,15 +85,15 @@ class CollectionModelAdmin(admin.ModelAdmin):
 
 @admin.register(CollectionItem)
 class CollectionItemModelAdmin(admin.ModelAdmin):
-    list_display = ('collection', 'item', 'entry_description')
+    list_display = ("collection", "item", "entry_description")
 
 
 @admin.register(Note)
 class NoteModelAdmin(admin.ModelAdmin):
-    list_display = ('author', 'value')
-    exclude = ('author',)
+    list_display = ("author", "value")
+    exclude = ("author",)
 
     def save_model(self, request, obj, form, change):
-        if getattr(obj, 'author', None) is None:
+        if getattr(obj, "author", None) is None:
             obj.author = request.user
         obj.save()

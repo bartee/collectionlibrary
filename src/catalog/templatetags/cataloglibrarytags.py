@@ -14,5 +14,5 @@ def icon_for_resourcetype(type):
     :param type: string
     :return: string
     """
-    icon = ENTITY_TYPE_ICONS.get(type, 'clear')
+    icon = ENTITY_TYPE_ICONS.get(type, "clear")
     return icon
