@@ -4,3 +4,4 @@ __pycache__
 frontend/node_modules
 src/config/settings/local.py
 .env
+.python-version
