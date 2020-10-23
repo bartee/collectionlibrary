@@ -20,11 +20,9 @@ class EntityResourceForm(forms.ModelForm):
 
     class Meta:
         model = EntityResource
-        exclude = ('data',)
-        fields = ('__all__')
-        widgets = {
-            'entity': autocomplete.ModelSelect2(url='entity_user_autocomplete')
-        }
+        exclude = ("data",)
+        fields = "__all__"
+        widgets = {"entity": autocomplete.ModelSelect2(url="entity_user_autocomplete")}
 
     def clean(self):
         """
@@ -32,27 +30,32 @@ class EntityResourceForm(forms.ModelForm):
         :return:
         """
         cleaned_data = super(EntityResourceForm, self).clean()
-        type = cleaned_data.get('type')
+        type = cleaned_data.get("type")
 
         if type not in [index[0] for index in EntityResource.RESOURCE_TYPES]:
-            raise forms.ValidationError(_('{type} is an unknown EntityResource type'.format(type=type)))
+            raise forms.ValidationError(
+                _("{type} is an unknown EntityResource type".format(type=type))
+            )
         handler = EntityResourceTypeFactory.get_handler_by_type(type)
         handler.validate(cleaned_data)
 
 
 class CollectionForm(forms.ModelForm):
 
-    start_date = forms.CharField(widget=AdminDateWidget(attrs={'class': 'datepicker'}))
-    end_date = forms.CharField(widget=AdminDateWidget(attrs={'class': 'datepicker'}))
+    start_date = forms.CharField(widget=AdminDateWidget(attrs={"class": "datepicker"}))
+    end_date = forms.CharField(widget=AdminDateWidget(attrs={"class": "datepicker"}))
     name = forms.CharField()
 
     class Meta:
         model = Collection
-        exclude = ('template', 'shared_with', 'name')
+        exclude = ("template", "shared_with", "name")
         fields = ()
 
     class Media:
-        js = ('js/class.js', 'js/catalog/collection_form_handlers.js',)
+        js = (
+            "js/class.js",
+            "js/catalog/collection_form_handlers.js",
+        )
 
     def clean(self):
         """
@@ -61,16 +64,16 @@ class CollectionForm(forms.ModelForm):
         :return:
         """
         cleaned_data = super(CollectionForm, self).clean()
-        start_date = cleaned_data.get('start_date')
-        end_date = cleaned_data.get('end_date')
-        verbose_name = cleaned_data.get('name')
+        start_date = cleaned_data.get("start_date")
+        end_date = cleaned_data.get("end_date")
+        verbose_name = cleaned_data.get("name")
 
-        startobj = datetime.strptime(start_date, '%d %B, %Y')
-        endobj = datetime.strptime(end_date, '%d %B, %Y')
+        startobj = datetime.strptime(start_date, "%d %B, %Y")
+        endobj = datetime.strptime(end_date, "%d %B, %Y")
 
-        self.cleaned_data['name'] = '{0} ({1} - {2})'.format(verbose_name,
-                                                             startobj.strftime('%d/%m'),
-                                                             endobj.strftime('%d/%m'))
+        self.cleaned_data["name"] = "{0} ({1} - {2})".format(
+            verbose_name, startobj.strftime("%d/%m"), endobj.strftime("%d/%m")
+        )
 
 
 class CollectionEntityForm(forms.ModelForm):
@@ -83,8 +86,9 @@ class CollectionEntityForm(forms.ModelForm):
 
     class Meta:
         model = CollectionItem
-        fields = ('__all__')
+        fields = "__all__"
 
 
-CollectionEntityFormset = inlineformset_factory(Collection, CollectionItem, form=CollectionEntityForm,
-                                                can_delete=True, extra=3)
+CollectionEntityFormset = inlineformset_factory(
+    Collection, CollectionItem, form=CollectionEntityForm, can_delete=True, extra=3
+)

@@ -6,13 +6,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0006_auto_20171205_0750'),
+        ("catalog", "0006_auto_20171205_0750"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='entityresource',
-            name='data',
+            model_name="entityresource",
+            name="data",
             field=models.CharField(max_length=255),
         ),
     ]

@@ -7,13 +7,18 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('catalog', '0001_initial'),
+        ("catalog", "0001_initial"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='entityresource',
-            name='entity',
-            field=models.ForeignKey(blank=True, default=None, on_delete=django.db.models.deletion.CASCADE, to='catalog.Entity'),
+            model_name="entityresource",
+            name="entity",
+            field=models.ForeignKey(
+                blank=True,
+                default=None,
+                on_delete=django.db.models.deletion.CASCADE,
+                to="catalog.Entity",
+            ),
         ),
     ]

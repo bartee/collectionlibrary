@@ -9,6 +9,7 @@ class PrivateShareableModel(models.Model):
     A model that's got an owner, and can be shared with a list of owners.
 
     """
+
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     is_public = models.BooleanField(default=True)
 
@@ -21,7 +22,10 @@ class TimestampedModel(models.Model):
     A model having a creation date and maintains the latest update
 
     """
-    created_at = models.DateTimeField(verbose_name="Creation date", auto_created=True, auto_now_add=True)
+
+    created_at = models.DateTimeField(
+        verbose_name="Creation date", auto_created=True, auto_now_add=True
+    )
     updated_at = models.DateTimeField(verbose_name="Last update", auto_now_add=True)
 
     class Meta:
@@ -39,10 +43,13 @@ class Collection(PrivateShareableModel, TimestampedModel):
     """
     A list of items
     """
-    TYPE_LIST = (('default', 'Default Template'),)
+
+    TYPE_LIST = (("default", "Default Template"),)
     name = models.CharField(max_length=255)
     template = models.CharField(max_length=50, choices=TYPE_LIST)
-    shared_with = models.ManyToManyField(to=settings.AUTH_USER_MODEL, related_name='co_owners', blank=True)
+    shared_with = models.ManyToManyField(
+        to=settings.AUTH_USER_MODEL, related_name="co_owners", blank=True
+    )
 
     def template_path(self):
         return "organisms"
@@ -55,24 +62,27 @@ class Entity(PrivateShareableModel, TimestampedModel):
     """
     An entity that can be added into a list. It has a name, an image, an owner, it can be public as well.
     """
+
     name = models.CharField(max_length=100)
-    tags = models.ManyToManyField(Tag, related_name='tags')
+    tags = models.ManyToManyField(Tag, related_name="tags")
     rating = models.IntegerField(blank=True, default=None)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name_plural = 'Entities'
+        verbose_name_plural = "Entities"
 
 
 class EntityResource(models.Model):
 
-    RESOURCE_TYPES = (('image', 'Image'), ('url', 'Link'), ('text', 'Text'))
+    RESOURCE_TYPES = (("image", "Image"), ("url", "Link"), ("text", "Text"))
 
-    entity = models.ForeignKey(to=Entity, on_delete=models.CASCADE, blank=True, default=None)
+    entity = models.ForeignKey(
+        to=Entity, on_delete=models.CASCADE, blank=True, default=None
+    )
 
-    type = models.CharField(max_length=25, choices=RESOURCE_TYPES, default='url')
+    type = models.CharField(max_length=25, choices=RESOURCE_TYPES, default="url")
     data = models.TextField()
     description = models.CharField(max_length=255)
 
@@ -89,6 +99,7 @@ class Note(models.Model):
     A simple model to add multiple notes to an item in a list.
 
     """
+
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     value = models.TextField()
 
@@ -108,6 +119,7 @@ class CollectionItem(models.Model):
     note ~
 
     """
+
     collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
     item = models.ForeignKey(Entity, on_delete=models.CASCADE, blank=True, null=True)
     entry_description = models.CharField(max_length=100)

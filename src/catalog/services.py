@@ -10,7 +10,7 @@ def get_collections_for_user(user):
     :param user:
     :return:
     """
-    collections = Collection.objects.filter(owner=user).order_by('-created_at').all()
+    collections = Collection.objects.filter(owner=user).order_by("-created_at").all()
     return collections
 
 
@@ -23,7 +23,7 @@ def get_entities_for_user(user):
     :param user:
     :return:
     """
-    entities = Entity.objects.filter(owner=user).order_by('name').all()
+    entities = Entity.objects.filter(owner=user).order_by("name").all()
     resources = EntityResource.objects.filter(entity__in=entities).all()
 
     # Append the resource counters to it.
@@ -44,7 +44,6 @@ def get_entities_for_user(user):
 
 
 class BaseCollectionEntityService(object):
-
     @staticmethod
     def get_entities(collection):
         """
@@ -52,16 +51,17 @@ class BaseCollectionEntityService(object):
 
         :return:
         """
-        raise NotImplementedError(_('BaseCollectionService has not been implemented'))
+        raise NotImplementedError(_("BaseCollectionService has not been implemented"))
 
 
 class WeeklyCollectionEntityService(BaseCollectionEntityService):
-
     @staticmethod
     def get_entities(collection):
 
         res = {}
-        entities = CollectionItem.objects.filter(collection=collection).select_related().all()
+        entities = (
+            CollectionItem.objects.filter(collection=collection).select_related().all()
+        )
         for entity in entities:
             # @TODO The entity_description is the date. Order these entities by date.
             # Takes some serious date parsing.
@@ -69,7 +69,7 @@ class WeeklyCollectionEntityService(BaseCollectionEntityService):
         return res
 
 
-collection_service_type_index = {'default': WeeklyCollectionEntityService}
+collection_service_type_index = {"default": WeeklyCollectionEntityService}
 
 
 def get_entities_for_collection(collection):

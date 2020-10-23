@@ -18,14 +18,15 @@ class CollectionDetailView(DetailView):
     Verify permissions as well
 
     """
+
     model = Collection
-    template_name = 'organisms/collections/detail.html'
+    template_name = "organisms/collections/detail.html"
 
     def get_context_data(self, **kwargs):
         context = super(CollectionDetailView, self).get_context_data(**kwargs)
-        entity_list = get_entities_for_collection(context.get('object'))
+        entity_list = get_entities_for_collection(context.get("object"))
 
-        context.update({'entity_list': entity_list})
+        context.update({"entity_list": entity_list})
         return context
 
 
@@ -33,6 +34,7 @@ class EntitiesForUserAutocomplete(autocomplete.Select2QuerySetView):
     """
     This returns the list of entities for the given user.
     """
+
     def get_queryset(self):
         # Don't forget to filter out results depending on the visitor !
         user = self.request.user
@@ -49,8 +51,8 @@ class EntitiesForUserAutocomplete(autocomplete.Select2QuerySetView):
 
 class CollectionCreateView(FormView):
     form_class = CollectionForm
-    template_name = 'organisms/collections/create.html'
-    success_url = '/'
+    template_name = "organisms/collections/create.html"
+    success_url = "/"
 
     def post(self, request, *args, **kwargs):
         return super(CollectionCreateView, self).post(request, *args, **kwargs)
@@ -71,24 +73,26 @@ class CollectionCreateView(FormView):
         :return:
         """
 
-        coll = Collection(owner=self.request.user, name=form.cleaned_data['name'], template='default')
+        coll = Collection(
+            owner=self.request.user, name=form.cleaned_data["name"], template="default"
+        )
         coll.save()
 
-        res = json.loads(self.request.POST.get('collection_relations'))
+        res = json.loads(self.request.POST.get("collection_relations"))
         for item in res:
-            fulldatestr = item.get('date')
-            selected_entity = item.get('selection')
-            notestr = item.get('note')
+            fulldatestr = item.get("date")
+            selected_entity = item.get("selection")
+            notestr = item.get("note")
 
-            shortdatestr = ' '.join(fulldatestr.split()[:4])
+            shortdatestr = " ".join(fulldatestr.split()[:4])
             shortdate = datetime.strptime(shortdatestr, "%a %b %d %Y")
-            name = shortdate.strftime('%a %d %b')
+            name = shortdate.strftime("%a %d %b")
 
             collectionitem = CollectionItem(collection=coll, entry_description=name)
             if selected_entity:
-                entity_id = selected_entity.get('index')
-                entity_text = selected_entity.get('display')
-                if entity_id != '':
+                entity_id = selected_entity.get("index")
+                entity_text = selected_entity.get("display")
+                if entity_id != "":
                     """
                     If no entity ID maar wel string, maak een nieuw entity ding aan.
                     """
@@ -99,13 +103,13 @@ class CollectionCreateView(FormView):
                         """
                         The entity with given id was not found
                         """
-                        logger.warning('Entity {0} is unknown'.format(entity_id))
-                elif entity_text != '':
+                        logger.warning("Entity {0} is unknown".format(entity_id))
+                elif entity_text != "":
                     entity = Entity(owner=self.request.user, name=entity_text)
                     entity.save()
                     collectionitem.item = entity
 
-            if notestr != '':
+            if notestr != "":
                 note = Note(author=self.request.user, value=notestr)
                 note.save()
 
