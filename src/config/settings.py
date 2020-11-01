@@ -39,8 +39,8 @@ DATABASES = {
         "ENGINE": 'django.db.backends.postgresql',
         "HOST": DB_HOST,
         "NAME": DB_NAME,
+        "USER": DB_USER,
         "PASSWORD": DB_PASSWORD,
-        "USERNAME": DB_USER,
         "PORT": DB_PORT
     },
     "OPTIONS": {
