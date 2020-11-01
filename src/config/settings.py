@@ -21,6 +21,11 @@ DB_PASSWORD = os.getenv('DB_PASSWORD')
 DB_USER = os.getenv('DB_USER')
 DB_PORT = os.getenv('DB_PORT', 1234)
 SECRET_KEY = os.getenv('SECRET_KEY')
+
+# https://docs.djangoproject.com/en/dev/howto/deployment/checklist/#https
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', False)
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', False)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,9 +33,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
