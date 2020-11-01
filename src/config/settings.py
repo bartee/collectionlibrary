@@ -15,10 +15,12 @@ import psycopg2.extensions
 from dotenv import load_dotenv
 load_dotenv()
 
+DB_HOST = os.getenv('DB_HOST')
 DB_NAME = os.getenv('DB_NAME')
 DB_PASSWORD = os.getenv('DB_PASSWORD')
 DB_USER = os.getenv('DB_USER')
-
+DB_PORT = os.getenv('DB_PORT', 1234)
+SECRET_KEY = os.getenv('SECRET_KEY')
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -35,9 +37,11 @@ ALLOWED_HOSTS = []
 DATABASES = {
     "default": {
         "ENGINE": 'django.db.backends.postgresql',
+        "HOST": DB_HOST,
         "NAME": DB_NAME,
         "PASSWORD": DB_PASSWORD,
-        "USERNAME": DB_USER
+        "USERNAME": DB_USER,
+        "PORT": DB_PORT
     },
     "OPTIONS": {
         "isolation_level": psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
